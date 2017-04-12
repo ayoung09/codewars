@@ -11,4 +11,26 @@ To build the triangle, start with a single 1 at the top, for each number in the 
 
 */
 
+function pascal(depth) {
+  const triangle = [];
 
+  while (triangle.length < depth) {
+    let rowIndex = triangle.length;
+    let rowLevel = rowIndex + 1;
+    let prevRow = triangle[rowIndex - 1];
+    triangle.push(buildRow(rowLevel, prevRow));
+  }
+  return triangle;
+}
+
+function buildRow(rowLevel, prevRow) {
+  if (rowLevel === 1) return [1];
+  else if (rowLevel === 2) return [1, 1];
+  else {
+    let rowFront = [1], rowBack = [1], newRow = [];
+    for (let i = 0; i <= prevRow.length - 2; i++) {
+      newRow.push(prevRow[i] + prevRow[i + 1]);
+    }
+    return [...rowFront, ...newRow, ...rowBack];
+  }
+}
