@@ -19,6 +19,11 @@ var stockPricesYesterday = [10, 7, 19, 5, 8, 11, 9, 16];
 
 
 function getMaxProfit(arr) {
+
+  if (arr.length < 2) {
+    throw new Error('Getting a profit requires at least 2 prices');
+  }
+
   const profits = [];
   for (let i = 0; i < arr.length - 1; i++) {
     const remainingPrices = arr.slice(i + 1);
